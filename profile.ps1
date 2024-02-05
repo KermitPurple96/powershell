@@ -1,12 +1,12 @@
-Set-ExecutionPolicy -ExecutionPolicy unrestricted 
+oh-my-posh init pwsh --config 'C:\Users\kermit\Documents\Powershell\myprofile.omp.json' | Invoke-Expression
+
+Set-ExecutionPolicy -ExecutionPolicy unrestricted -Scope CurrentUser
 Set-MpPreference -DisableIOAVProtection $true
 Set-MpPreference -DisableRealtimeMonitoring $true 
 $WarningPreference = 'SilentlyContinue'
 
 
 New-Alias -Name np -Value "C:\cmd\Notepad++.lnk" -Force
-
-
 
 Import-Module C:\Users\kermit\Documents\WindowsPowerShell\Modules\nishang\nishang.psm1
 
@@ -29,20 +29,15 @@ foreach ($moduleFile in $moduleFiles) {
 $originalPath = [System.Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::User)
 
 # Agregar tus nuevas rutas al PATH
-$Variable_Name = "C:\cmd\"
+$Variable_Name = "C:\cmd\nvim-win64\bin"
 [Environment]::SetEnvironmentVariable("PATH", "$originalPath;$Variable_Name", [System.EnvironmentVariableTarget]::User)
 
 #####################
-$originalPath = [System.Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::User)
-$Variable_Name = "C:\Users\kermit\Documents\WindowsPowerShell\Modules"
-[Environment]::SetEnvironmentVariable("PATH", "$originalPath;$Variable_Name", [System.EnvironmentVariableTarget]::User)
+#$originalPath = [System.Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::User)
+#$Variable_Name = "C:\Users\kermit\Documents\WindowsPowerShell\Modules"
+#[Environment]::SetEnvironmentVariable("PATH", "$originalPath;$Variable_Name", [System.EnvironmentVariableTarget]::User)
 #####################
 
-#####################
-$originalPath = [System.Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::User)
-$Variable_Name = "C:\cmd\Ghostpack-CompiledBinaries"
-[Environment]::SetEnvironmentVariable("PATH", "$originalPath;$Variable_Name", [System.EnvironmentVariableTarget]::User)
-#####################
 
 # Restaurar las rutas originales si lo deseas
 # [Environment]::SetEnvironmentVariable("PATH", $originalPath, [System.EnvironmentVariableTarget]::User)
@@ -54,3 +49,14 @@ $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
     Import-Module "$ChocolateyProfile"
 }
+
+#Functions
+function which ($command) {
+  Get-Command -Name $command -ErrorAction SilentlyContinue |
+  Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
+}
+
+Import-Module Terminal-Icons
+Import-Module PSReadLine
+Set-PSReadLineKeyHandler -Key Tab -Function Complete
+Set-PSReadLineOption -PredictionViewStyle ListView
