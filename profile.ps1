@@ -1,7 +1,7 @@
 #aliases
 New-Alias -Name np -Value "C:\cmd\Notepad++.lnk" -Force
 
-
+# https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/clean-detailed.omp.json
 #Prompt
 oh-my-posh init pwsh --config 'C:\Users\jaime\Documents\PowerShell\myprofile.omp.json' | Invoke-Expression
 
