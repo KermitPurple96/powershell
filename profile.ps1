@@ -1,3 +1,7 @@
+
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\ys.omp.json" | Invoke-Expression
+
+
 #aliases
 New-Alias -Name np -Value "C:\cmd\Notepad++.lnk" -Force
 
@@ -5,6 +9,7 @@ New-Alias -Name np -Value "C:\cmd\Notepad++.lnk" -Force
 #Prompt
 oh-my-posh init pwsh --config 'C:\Users\jaime\Documents\PowerShell\myprofile.omp.json' | Invoke-Expression
 
+Import-module NtObjectManager
 Import-Module Terminal-Icons
 Import-Module PSReadLine
 Set-PSReadLineKeyHandler -Key Tab -Function Complete
