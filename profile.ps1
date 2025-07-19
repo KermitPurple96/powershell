@@ -1,4 +1,3 @@
-
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\ys.omp.json" | Invoke-Expression
 
 
@@ -24,6 +23,10 @@ $Variable_Name = "C:\cmd\nvim-win64\bin"
 Write-Host "`t Go modules:" -NoNewline
 Write-Host "`t cd `$env:modules `n" -ForegroundColor Red
 
+Write-Host "`t Go profile:" -NoNewline
+Write-Host "`t cd `$env:profile `n" -ForegroundColor Red
+
+
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
     Import-Module "$ChocolateyProfile"
@@ -34,3 +37,7 @@ function which ($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue |
   Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
+
+$env:modules = "C:\Users\MALDEV01\Documents\WindowsPowerShell\Modules"
+$env:profile = "C:\Users\MALDEV01\Documents\WindowsPowerShell\"
+
